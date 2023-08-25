@@ -14,10 +14,10 @@ This repository is an educational resource for aspiring quantitative researchers
 
 ## Features
 
-* Moving average crossover strategy implementation
 * Utilization of the **Dask** library for parallel and distributed computing to enhance data processing efficiency
 * Risk management to control position sizing and protect capital
 * Portfolio optimization using the **pyportfolioopt** library to determine optimal asset allocation weights
+* Moving average crossover strategy implementation
 * Alpaca API integration for fetching historical data and placing orders
 
 ## Setup Instructions
