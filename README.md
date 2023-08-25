@@ -14,17 +14,18 @@ The Alpaca Trading Bot is a project that demonstrates a trading strategy using t
 ## Setup Instructions
 
 1. Clone the repository:
-`git clone https://github.com/BohdansGitHub/Alpaca-Advanced-Trading-Bot.git
-cd Alpaca-Advanced-Trading-Bot`
-2. Install the required packages using pip:
+`git clone https://github.com/BohdansGitHub/Alpaca-Trading-Bot.git`
+2. Change the current working directory:
+`cd Alpaca-Advanced-Trading-Bot`
+3. Install the required packages using pip:
 `pip install -r requirements.txt`
-3. Obtain Alpaca API keys:
+4. Obtain Alpaca API keys:
 Sign up for an Alpaca account at https://alpaca.markets/.
 Create API keys with appropriate permissions.
-Copy your API keys and paste them into the config.ini file. Customize the strategy parameters and settings:
-4. Customize the strategy parameters and settings:
-Adjust the parameters in config.ini file to suit your strategy.
-5. Run the bot:
+Copy your API keys and paste them into the config.ini file.
+5. Customize the strategy parameters and settings:
+Adjust the parameters in config.ini file to suit your strategy. 
+6. Run the bot:
 `python main.py`
 
 ## Contact
