@@ -14,11 +14,11 @@ def main():
     config.read('config.ini')
 
     # Alpaca API credentials
-    apca_api_key_id = config['ALPACA']['API_KEY']
-    apca_api_secret_key = config['ALPACA']['API_SECRET']
+    alpaca_api_key_id = config['ALPACA']['API_KEY']
+    alpaca_api_secret_key = config['ALPACA']['API_SECRET']
 
     # Initialize Alpaca API
-    alpaca = AlpacaAPI(api_key=apca_api_key_id, api_secret=apca_api_secret_key)
+    alpaca = AlpacaAPI(api_key=alpaca_api_key_id, api_secret=alpaca_api_secret_key)
 
     # Define parameters
     short_window = config.getint('STRATEGY', 'SHORT_WINDOW')
@@ -27,7 +27,7 @@ def main():
     risk_percentage = config.getfloat('RISK_MANAGEMENT', 'RISK_PERCENTAGE')
     end_date_offset = config.getint('MAIN', 'END_DATE_OFFSET')
     increase_allocation = config.getfloat('MAIN', 'INCREASE_ALLOCATION')
-    deccrease_allocation = config.getfloat('MAIN', 'DECREASE_ALLOCATION')
+    decrease_allocation = config.getfloat('MAIN', 'DECREASE_ALLOCATION')
     symbols = config['MAIN']['SYMBOLS'].replace(" ", "").split(',')
     risk_free_rate = config.getfloat('PORTFOLIO_OPTIMIZATION', 'RISK_FREE_RATE')
 
@@ -52,7 +52,7 @@ def main():
         if signal == 'Buy':
             allocation_weights[symbol] *= increase_allocation  # Increase allocation by n%
         elif signal == 'Sell':
-            allocation_weights[symbol] *= deccrease_allocation  # Decrease allocation by n%
+            allocation_weights[symbol] *= decrease_allocation  # Decrease allocation by n%
 
     # Normalize allocation weights
     total_weight = sum(allocation_weights.values())

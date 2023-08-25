@@ -2,13 +2,22 @@
 
 ## Description
 
-The Alpaca Trading Bot is a project that demonstrates a trading strategy using the Alpaca API. The bot combines a moving average crossover strategy with risk management and portfolio optimization techniques to make informed buy and sell decisions in the financial markets. This repository serves as a showcase for quantitative research and programming skills, particularly in the context of hedge funds and investment banks.
+The Alpaca Trading Bot is a trading solution designed to showcase the power of algorithmic trading strategies, risk management, portfolio optimization with **pyportfolioopt** library, parallel computing with the Dask library and the Alpaca API. This project demonstrates the integration of quantitative research, programming skills, financial analysis, and distributed computing to create an effective trading bot for equities.
+
+By combining a moving average crossover strategy with risk management techniques, the bot aims to make informed trading decisions. The portfolio optimization component provides insights into optimal asset allocation, helping traders achieve a balanced and diversified portfolio.
+
+To handle large-scale data processing efficiently, the project leverages the **Dask** library for parallel and distributed computing. This allows for faster data analysis, making the trading bot well-suited for handling substantial amounts of historical and real-time financial data.
+
+This repository is an educational resource for aspiring quantitative researchers, algorithmic traders, and finance enthusiasts. It serves as an example of how to structure and develop a trading bot that incorporates various quantitative techniques and takes advantage of parallel computing to make data-driven investment decisions.
+
+**Note**: This project is designed for paper trading on https://paper-api.alpaca.markets. Keep in mind that in a real-world scenario, you would need to delve deeper into factors, such as risk-adjusted performance metrics, correlation analysis, scenario-based simulations, etc.
 
 ## Features
 
 * Moving average crossover strategy implementation
+* Utilization of the **Dask** library for parallel and distributed computing to enhance data processing efficiency
 * Risk management to control position sizing and protect capital
-* Portfolio optimization to determine optimal asset allocation weights
+* Portfolio optimization using the **pyportfolioopt** library to determine optimal asset allocation weights
 * Alpaca API integration for fetching historical data and placing orders
 
 ## Setup Instructions
@@ -32,6 +41,17 @@ The Alpaca Trading Bot is a project that demonstrates a trading strategy using t
 Adjust the parameters in **config.ini** file to suit your strategy. 
 7. Run the bot:
 `python main.py`
+
+## Acknowledgement
+
+I would like to express my gratitude to the following individuals, projects, and resources that have contributed to the development and success of the Alpaca Trading Bot:
+
+- The [Alpaca](https://alpaca.markets/) team for providing the Alpaca API, which forms the foundation of our trading bot's data retrieval and order execution.
+- The creators and maintainers of the [Dask](https://dask.org/) library, including [Matthew Rocklin](https://github.com/mrocklin) and [contributors](https://github.com/dask/dask/graphs/contributors), who enabled us to harness parallel and distributed computing for efficient data processing and strategy execution.
+- The [pyportfolioopt](https://pyportfolioopt.readthedocs.io/) library by [Rutger van Haasteren](https://github.com/rshkv), which significantly enhanced portfolio optimization capabilities.
+
+I am also grateful for the wider open-source community, online forums, and resources that have helped me overcome challenges and expand our knowledge.
+
 
 ## Contact
 
