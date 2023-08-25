@@ -1,7 +1,3 @@
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
 from strategies import moving_average_crossover_strategy
 from risk_management import calculate_max_position_size
 from portfolio_optimization import calculate_optimal_weights
@@ -32,7 +28,7 @@ def main():
     end_date_offset = config.getint('MAIN', 'END_DATE_OFFSET')
     increase_allocation = config.getfloat('MAIN', 'INCREASE_ALLOCATION')
     deccrease_allocation = config.getfloat('MAIN', 'DECREASE_ALLOCATION')
-    symbols =  config['MAIN']['SYMBOLS'].replace(" ", "").split(',')
+    symbols = config['MAIN']['SYMBOLS'].replace(" ", "").split(',')
     risk_free_rate = config.getfloat('PORTFOLIO_OPTIMIZATION', 'RISK_FREE_RATE')
 
     # Create an offset of n Business days
