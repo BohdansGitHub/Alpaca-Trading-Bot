@@ -1,4 +1,4 @@
-# **Alpaca Advanced Trading Bot**
+# **Alpaca Trading Bot**
 
 ## Description
 
