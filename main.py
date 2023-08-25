@@ -7,7 +7,6 @@ from risk_management import calculate_max_position_size
 from portfolio_optimization import calculate_optimal_weights
 from alpaca_utils import AlpacaAPI
 from datetime import datetime, timedelta
-# using pd.tseries.offsets.BusinessDay(n)
 import pandas as pd
 import time
 import configparser
