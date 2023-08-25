@@ -2,7 +2,7 @@
 
 ## Description
 
-The Alpaca Advanced Trading Bot is a project that demonstrates a trading strategy using the Alpaca API. The bot combines a moving average crossover strategy with risk management and portfolio optimization techniques to make informed buy and sell decisions in the financial markets. This repository serves as a showcase for quantitative research and programming skills, particularly in the context of hedge funds and investment banks.
+The Alpaca Trading Bot is a project that demonstrates a trading strategy using the Alpaca API. The bot combines a moving average crossover strategy with risk management and portfolio optimization techniques to make informed buy and sell decisions in the financial markets. This repository serves as a showcase for quantitative research and programming skills, particularly in the context of hedge funds and investment banks.
 
 ## Features
 
