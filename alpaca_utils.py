@@ -16,15 +16,15 @@ class AlpacaAPI:
         self.api_trading_client = TradingClient(self.api_key, self.api_secret, paper=True)
         self.api_stock_client = StockHistoricalDataClient(self.api_key, self.api_secret)
 
-    def get_historical_data(self, symbol, timeframe, start_date, end_date):
+    def get_historical_data(self, symbol, timeframe, start_date, end_date, chunk_size):
         df = dd.from_delayed([
             dask.delayed(self._get_historical_data_chunk)(symbol, timeframe, chunk_start, chunk_end)
-            for chunk_start, chunk_end in self._generate_chunk_intervals(start_date, end_date)
+            for chunk_start, chunk_end in self._generate_chunk_intervals(start_date, end_date, chunk_size)
         ])
         return df.compute()
 
     @staticmethod
-    def _generate_chunk_intervals(start_date, end_date, chunk_size='250D'):
+    def _generate_chunk_intervals(start_date, end_date, chunk_size):
         ranges = pd.date_range(start=start_date, end=end_date, freq=chunk_size)
         ranges = ranges.append(pd.DatetimeIndex([end_date]))
         chunk_intervals = [(rng, ranges[min(i + 1, len(ranges) - 1)]) for i, rng in enumerate(ranges)][:-1]

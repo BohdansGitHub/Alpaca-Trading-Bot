@@ -24,6 +24,7 @@ def main():
     short_window = config.getint('STRATEGY', 'SHORT_WINDOW')
     long_window = config.getint('STRATEGY', 'LONG_WINDOW')
     historical_period = config.getint('MAIN', 'HISTORICAL_PERIOD')
+    chunk_size = config['MAIN']['CHUNK_SIZE']
     risk_percentage = config.getfloat('RISK_MANAGEMENT', 'RISK_PERCENTAGE')
     end_date_offset = config.getint('MAIN', 'END_DATE_OFFSET')
     increase_allocation = config.getfloat('MAIN', 'INCREASE_ALLOCATION')
@@ -38,7 +39,7 @@ def main():
     start_date = datetime.utcnow() - offset
     end_date = datetime.utcnow() - timedelta(minutes=end_date_offset)  # change to 0 to source most recent data
 
-    data = alpaca.get_historical_data(symbols, 'Day', start_date, end_date)
+    data = alpaca.get_historical_data(symbols, 'Day', start_date, end_date, chunk_size)
 
     # Execute moving average crossover strategy
     signals = moving_average_crossover_strategy(data, short_window, long_window)

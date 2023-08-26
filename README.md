@@ -46,11 +46,11 @@ Adjust the parameters in **config.ini** file to suit your strategy.
 
 I would like to express my gratitude to the following individuals, projects, and resources that have contributed to the development and success of the Alpaca Trading Bot:
 
-- The [Alpaca](https://alpaca.markets/) team for providing the Alpaca API, which forms the foundation of our trading bot's data retrieval and order execution.
+- The [Alpaca](https://alpaca.markets/) team for providing the Alpaca API, which forms the foundation of my trading bot's data retrieval and order execution.
 - The creators and maintainers of the [Dask](https://dask.org/) library, including [Matthew Rocklin](https://github.com/mrocklin) and [contributors](https://github.com/dask/dask/graphs/contributors), who enabled us to harness parallel and distributed computing for efficient data processing and strategy execution.
 - The [pyportfolioopt](https://pyportfolioopt.readthedocs.io/) library by [Rutger van Haasteren](https://github.com/rshkv), which significantly enhanced portfolio optimization capabilities.
 
-I am also grateful for the wider open-source community, online forums, and resources that have helped me overcome challenges and expand our knowledge.
+I am also grateful for the wider open-source community, online forums, and resources that have helped me overcome challenges and expand my knowledge.
 
 
 ## Contact
