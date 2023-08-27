@@ -24,7 +24,8 @@ class AlpacaAPI:
             using the provided chunk size to manage data retrieval in smaller segments.
 
             Args:
-                symbol (str): The trading symbol for which to retrieve historical data.
+                symbols (str or list): The trading symbol(s) for which to retrieve historical data.
+                              It can be a single symbol as a string or a list of symbols.
                 timeframe (str): The desired timeframe for the historical data (e.g., '1D' for daily, '1H' for hourly).
                 start_date (datetime.datetime): The start date of the historical data range.
                 end_date (datetime.datetime): The end date of the historical data range.
