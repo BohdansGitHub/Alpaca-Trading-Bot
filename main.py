@@ -17,9 +17,6 @@ def main():
     alpaca_api_key_id = config['ALPACA']['API_KEY']
     alpaca_api_secret_key = config['ALPACA']['API_SECRET']
 
-    # Initialize Alpaca API
-    alpaca = AlpacaAPI(api_key=alpaca_api_key_id, api_secret=alpaca_api_secret_key)
-
     # Define parameters
     short_window = config.getint('STRATEGY', 'SHORT_WINDOW')
     long_window = config.getint('STRATEGY', 'LONG_WINDOW')
@@ -32,11 +29,14 @@ def main():
     symbols = config['MAIN']['SYMBOLS'].replace(" ", "").split(',')
     risk_free_rate = config.getfloat('PORTFOLIO_OPTIMIZATION', 'RISK_FREE_RATE')
 
+    # Initialize Alpaca API
+    alpaca = AlpacaAPI(api_key=alpaca_api_key_id, api_secret=alpaca_api_secret_key)
+
     # Create an offset of n Business days
     offset = pd.tseries.offsets.BusinessDay(n=round(historical_period))
 
-    # getting result by subtracting offset
-    start_date = datetime.utcnow() - offset
+    # getting start_date and end_date by subtracting offset
+    start_date = (datetime.utcnow() - offset).to_pydatetime()
     end_date = datetime.utcnow() - timedelta(minutes=end_date_offset)  # change to 0 to source most recent data
 
     data = alpaca.get_historical_data(symbols, 'Day', start_date, end_date, chunk_size)
