@@ -16,7 +16,7 @@ class AlpacaAPI:
         self.api_trading_client = TradingClient(self.api_key, self.api_secret, paper=True)
         self.api_stock_client = StockHistoricalDataClient(self.api_key, self.api_secret)
 
-    def get_historical_data(self, symbol, timeframe, start_date, end_date, chunk_size):
+    def get_historical_data(self, symbols, timeframe, start_date, end_date, chunk_size):
         """
             Retrieve historical data for a given symbol within a specified timeframe.
 
@@ -36,7 +36,7 @@ class AlpacaAPI:
             """
         # Use Dask to parallelize and manage data retrieval in chunks
         df = dd.from_delayed([
-            dask.delayed(self._get_historical_data_chunk)(symbol, timeframe, chunk_start, chunk_end)
+            dask.delayed(self._get_historical_data_chunk)(symbols, timeframe, chunk_start, chunk_end)
             for chunk_start, chunk_end in self._generate_chunk_intervals(start_date, end_date, chunk_size)
         ])
         # Compute the Dask DataFrame to obtain the final result
