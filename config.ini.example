@@ -21,3 +21,10 @@ RISK_PERCENTAGE = 0.02
 
 [PORTFOLIO_OPTIMIZATION]
 RISK_FREE_RATE = 0.03
+
+[AWS]
+AWS_DATA_SOURCE = False
+AWS_DATA_UPLOAD = True
+BUCKET_NAME = histdataal
+LOCAL_FILE = local_hist_data.csv
+AWS_FILE = aws_hist_data.csv

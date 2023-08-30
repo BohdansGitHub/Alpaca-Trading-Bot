@@ -8,6 +8,8 @@ By combining a moving average crossover strategy with risk management techniques
 
 To handle large-scale data processing efficiently, the project leverages the **Dask** library for parallel and distributed computing. This allows for faster data analysis, making the trading bot well-suited for handling substantial amounts of historical and real-time financial data.
 
+The project's architecture is designed to be scalable, and it incorporates **AWS** cloud services for enhanced reliability, data storage, and file management.
+
 This repository is an educational resource for aspiring quantitative researchers, algorithmic traders, and finance enthusiasts. It serves as an example of how to structure and develop a trading bot that incorporates various quantitative techniques and takes advantage of parallel computing to make data-driven investment decisions.
 
 **Note**: This project is designed for paper trading on https://paper-api.alpaca.markets. Keep in mind that in a real-world scenario, you would need to delve deeper into factors, such as risk-adjusted performance metrics, correlation analysis, scenario-based simulations, etc.
@@ -15,6 +17,7 @@ This repository is an educational resource for aspiring quantitative researchers
 ## Features
 
 * Utilization of the **Dask** library for parallel and distributed computing to enhance data processing efficiency
+* Integration with **AWS** cloud services for enhanced scalability, data storage, and file management
 * Risk management to control position sizing and protect capital
 * Portfolio optimization using the **pyportfolioopt** library to determine optimal asset allocation weights
 * Object-Oriented Programming (OOP) concepts for modular and extensible code design
@@ -37,11 +40,18 @@ This repository is an educational resource for aspiring quantitative researchers
    * Duplicate the config.ini.example file and rename it to config.ini.
    * Open the config.ini file in a text editor.
    * Replace the placeholder values with your actual API key and secret.
-   * Please note that the **config.ini** file contains sensitive information and should not be shared publicly. Make sure to keep it private and secure.
+   * If you intend to use AWS integration, add your AWS S3 bucket name as well. 
+   
+   Please note that the **config.ini** file contains sensitive information and should not be shared publicly. Make sure to keep it private and secure.
 6. Customize the strategy parameters and settings:
 Adjust the parameters in **config.ini** file to suit your strategy. 
 7. Run the bot:
 `python main.py`
+
+## Tests
+
+The project includes unit tests for key components. Run the tests using the following command:
+`python -m unittest discover -s tests -p test_*.py`
 
 ## Acknowledgement
 
@@ -50,6 +60,7 @@ I would like to express my gratitude to the following individuals, projects, and
 - The [Alpaca](https://alpaca.markets/) team for providing the Alpaca API, which forms the foundation of my trading bot's data retrieval and order execution.
 - The creators and maintainers of the [Dask](https://dask.org/) library, including [Matthew Rocklin](https://github.com/mrocklin) and [contributors](https://github.com/dask/dask/graphs/contributors), who enabled us to harness parallel and distributed computing for efficient data processing and strategy execution.
 - The [pyportfolioopt](https://pyportfolioopt.readthedocs.io/) library by [Rutger van Haasteren](https://github.com/rshkv), which significantly enhanced portfolio optimization capabilities.
+- [AWS](https://aws.amazon.com/free/?trk=f17b4b4e-aa1b-4189-b0c4-81a19b53f625&sc_channel=ps&ef_id=Cj0KCQjw0bunBhD9ARIsAAZl0E2d7IV8yobTcu-9aXKsm7fl_iLtucbyZD9VwrkocGc5cB-FTBuG9kkaAnx2EALw_wcB:G:s&s_kwcid=AL!4422!3!645186168166!e!!g!!aws!19579892551!148838343321&all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all) for their cloud services that enhance scalability and data management.
 
 I am also grateful for the wider open-source community, online forums, and resources that have helped me overcome challenges and expand my knowledge.
 

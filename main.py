@@ -2,6 +2,7 @@ from strategies import moving_average_crossover_strategy
 from risk_management import calculate_max_position_size
 from portfolio_optimization import calculate_optimal_weights
 from alpaca_utils import AlpacaAPI
+from aws_utils import S3FileManager
 from datetime import datetime, timedelta
 import pandas as pd
 import time
@@ -13,21 +14,26 @@ def main():
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    # Alpaca API credentials
+    # Alpaca API credentials and other parameters
     alpaca_api_key_id = config['ALPACA']['API_KEY']
     alpaca_api_secret_key = config['ALPACA']['API_SECRET']
 
     # Define parameters
-    short_window = config.getint('STRATEGY', 'SHORT_WINDOW')
-    long_window = config.getint('STRATEGY', 'LONG_WINDOW')
     historical_period = config.getint('MAIN', 'HISTORICAL_PERIOD')
     chunk_size = config['MAIN']['CHUNK_SIZE']
-    risk_percentage = config.getfloat('RISK_MANAGEMENT', 'RISK_PERCENTAGE')
     end_date_offset = config.getint('MAIN', 'END_DATE_OFFSET')
     increase_allocation = config.getfloat('MAIN', 'INCREASE_ALLOCATION')
     decrease_allocation = config.getfloat('MAIN', 'DECREASE_ALLOCATION')
     symbols = config['MAIN']['SYMBOLS'].replace(" ", "").split(',')
+    short_window = config.getint('STRATEGY', 'SHORT_WINDOW')
+    long_window = config.getint('STRATEGY', 'LONG_WINDOW')
+    risk_percentage = config.getfloat('RISK_MANAGEMENT', 'RISK_PERCENTAGE')
     risk_free_rate = config.getfloat('PORTFOLIO_OPTIMIZATION', 'RISK_FREE_RATE')
+    aws_data_source = config.getboolean('AWS', 'AWS_DATA_SOURCE')
+    aws_data_upload = config.getboolean('AWS', 'AWS_DATA_UPLOAD')
+    bucket_name = config['AWS']['BUCKET_NAME']
+    local_file = config['AWS']['LOCAL_FILE']
+    aws_file = config['AWS']['AWS_FILE']
 
     # Initialize Alpaca API
     alpaca = AlpacaAPI(api_key=alpaca_api_key_id, api_secret=alpaca_api_secret_key)
@@ -39,7 +45,17 @@ def main():
     start_date = (datetime.utcnow() - offset).to_pydatetime()
     end_date = datetime.utcnow() - timedelta(minutes=end_date_offset)  # change to 0 to source most recent data
 
-    data = alpaca.get_historical_data(symbols, 'Day', start_date, end_date, chunk_size)
+    # If using AWS as the data source, download the data from S3
+    if aws_data_source:
+        s3_manager = S3FileManager()
+        s3_manager.download_file(bucket_name, local_file, aws_file)
+        data = pd.read_csv(local_file)
+    else:  # Otherwise, fetch data using Alpaca API
+        data = alpaca.get_historical_data(symbols, 'Day', start_date, end_date, chunk_size)
+        if aws_data_upload:  # Upload fetched data to AWS if configured
+            data.to_csv(local_file)
+            s3_manager = S3FileManager()
+            s3_manager.upload_file(local_file, bucket_name, aws_file)
 
     # Execute moving average crossover strategy
     signals = moving_average_crossover_strategy(data, short_window, long_window)
