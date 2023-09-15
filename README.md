@@ -64,7 +64,6 @@ I would like to express my gratitude to the following individuals, projects, and
 
 I am also grateful for the wider open-source community, online forums, and resources that have helped me overcome challenges and expand my knowledge.
 
-
 ## Contact
 
 For inquiries, please, write an email to _kulykbo@gmail.com_ or contact me on LinkedIn https://www.linkedin.com/in/bohdan-kulyk/
